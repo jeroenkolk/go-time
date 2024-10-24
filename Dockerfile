@@ -19,6 +19,6 @@ COPY --from=builder /app/app .
 
 EXPOSE 3000
 
-USER nonroot:nonroot
+USER 3000:3000
 
 CMD ["./app"]
