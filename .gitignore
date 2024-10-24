@@ -15,10 +15,6 @@
 go.work
 go.work.sum
 
-# Go modules
-go.mod
-go.sum
-
 # IDE specific files
 .idea/
 .vscode/
