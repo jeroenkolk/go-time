@@ -8,7 +8,8 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o app ./cmd/gotime/main.go
+ARG TARGETARCH
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=$TARGETARCH go build -ldflags="-s -w" -o app ./cmd/gotime/main.go
 
 FROM alpine:latest
 
