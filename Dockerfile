@@ -5,10 +5,12 @@ WORKDIR /app
 COPY go.mod go.sum ./
 
 RUN go mod download
+RUN go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
 
 COPY . .
 
 ARG TARGETARCH
+RUN mkdir generated && oapi-codegen --config=config.yaml api/openapi.yaml
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=$TARGETARCH go build -ldflags="-s -w" -o app ./cmd/gotime/main.go
 
 FROM alpine:latest
