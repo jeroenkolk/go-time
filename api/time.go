@@ -9,6 +9,9 @@ import (
 
 func (s Server) GetTime(ctx context.Context, request gen.GetTimeRequestObject) (gen.GetTimeResponseObject, error) {
 
+	if request.Params.Timezone == nil {
+		return nil, fmt.Errorf("timezone parameter is missing")
+	}
 	tz := *request.Params.Timezone
 
 	loc, err := time.LoadLocation(tz)
