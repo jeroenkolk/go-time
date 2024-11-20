@@ -11,7 +11,7 @@ COPY . .
 
 ARG TARGETARCH
 RUN mkdir generated && oapi-codegen --config=config.yaml api/openapi.yaml
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=$TARGETARCH go build -ldflags="-s -w" -o app ./cmd/gotime/main.go
+RUN CGO_ENABLED=1 GOOS=linux GOARCH=$TARGETARCH go build -ldflags="-s -w" -o app ./cmd/gotime/main.go
 
 FROM alpine:latest
 
